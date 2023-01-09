@@ -11,6 +11,8 @@ class Users extends Model
 
     public $timestamps = false;
 
+    protected $guarded = ['id'];
+
     public function user_addresses() {
         return $this->hasMany(User_addresses::class);
     }
