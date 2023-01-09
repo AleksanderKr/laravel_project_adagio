@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class OfferFactory extends Factory
+class OffersFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +20,8 @@ class OfferFactory extends Factory
     public function definition()
     {
         return [
-            #'offer_id' uuid albo auto_increment
+            'seller_id' => fake()->randomNumber(2, true),
+            'order_id' => fake()->randomNumber(2, true),
             'item_name' => fake()->sentence(2),
             'category' => 'elektronika',
             'brand' => 'samsung',
@@ -30,7 +31,6 @@ class OfferFactory extends Factory
             'price' => fake()->randomFloat(2, 40, 500),
             'pictures' => 'img placeholder',
             'condition' => 'brand new',
-            'product_opinion' => fake()->random_int(1, 20),   # tu musi byc to co w product_opinions
         ];
     }
 }

@@ -8,16 +8,14 @@
 </head>
 <body>
     <?php
-        if(DB::connection()->getPdo()) {
-            echo app()->getLocale();
-        }
-        echo '<br />Lista tabel';
+        
+        echo 'Lista tabel';
         $tables = DB::select('SHOW TABLES');
         foreach($tables as $table)
         {
             echo "<br />".head($table);
         }
-
+        
         /*
             do CRUD-a:
             - po zalogowaniu welcome page z listą tabel, klik w tabelę pokazuje zawartość z polem do wyszukiwania,

@@ -23,6 +23,16 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        \App\Models\Users::factory(10)->create();
+        \App\Models\Carts::factory(5)->create();
+        \App\Models\Orders::factory(5)->create();
+        \App\Models\Offers::factory(10)->create();
+        \App\Models\ProductOpinions::factory(10)->create();
+        \App\Models\UserAddresses::factory(10)->create();
+        \App\Models\Shipments::factory(5)->create();
+        \App\Models\Payments::factory(5)->create();
+
+        /*
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         DB::table('offers')->insert([
@@ -39,6 +49,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('product_opinions')->insert([
+            'offer_id' => 1,
             'text_field' => fake()->sentence(10),
             'author' => fake()->word(),
         ]);
@@ -92,5 +103,7 @@ class DatabaseSeeder extends Seeder
             'payment_id' => fake()->randomNumber(2, true),
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        */
     }
 }

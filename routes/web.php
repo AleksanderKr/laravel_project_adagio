@@ -24,3 +24,7 @@ Route::get('/database_test', function() {
 Route::get('/CRUD', function() {
     return view('CRUD');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
