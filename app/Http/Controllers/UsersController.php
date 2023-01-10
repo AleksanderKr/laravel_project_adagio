@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Users;   // data is coming from the database via Model
+use App\Http\Requests\ValidationUsersRequests;
 
 class UsersController extends Controller
 {
@@ -12,6 +13,8 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    
     public function index()
     {
         $users = Users::all();
@@ -34,8 +37,10 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidationUsersRequests $request)
     {
+        $request->validated();
+
         $input = $request->all();
         Users::create($input);
         return redirect('users')->with('flash_message', 'User Added');
@@ -72,8 +77,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidationUsersRequests $request, $id)
     {
+        $request->validated();
+        
         $users = Users::find($id);
         $input = $request->all();
         $users->update($input);

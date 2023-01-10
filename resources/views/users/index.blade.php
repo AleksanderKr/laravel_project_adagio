@@ -17,14 +17,10 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>Id</th>
                                         <th>Username</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Telephone</th>
-                                        <th>NIP</th>
-                                        <th>Password</th>
-                                        <th>Email</th>
                                         <th>Join date</th>
                                         <th>Actions</th>
                                     </tr>
@@ -32,14 +28,10 @@
                                 <tbody>
                                 @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $user->id }}</td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
-                                        <td>{{ $user->telephone }}</td>
-                                        <td>{{ $user->NIP }}</td>
-                                        <td>{{ $user->password }}</td>
-                                        <td>{{ $user->email }}</td>
                                         <td>{{ $user->join_date }}</td>
 
                                         <td>
