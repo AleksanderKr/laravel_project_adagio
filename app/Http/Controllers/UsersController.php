@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;   // data is coming from the database via Model
 use App\Http\Requests\ValidationUsersRequests;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\CursorPaginator;
 
 class UsersController extends Controller
 {
@@ -17,7 +19,8 @@ class UsersController extends Controller
     
     public function index()
     {
-        $users = Users::all();
+        $users = Users::paginate(9, ['*'], 'users_pagination');
+    
         return view ('users.index')->with('users', $users);
     }
 
@@ -40,7 +43,7 @@ class UsersController extends Controller
     public function store(ValidationUsersRequests $request)
     {
         $request->validated();
-
+        
         $input = $request->all();
         Users::create($input);
         return redirect('users')->with('flash_message', 'User Added');
@@ -54,8 +57,37 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = Users::find($id);
-        return view('users.show')->with('users', $user);
+        \DB::enableQueryLog();
+        $users = Users::find($id);
+    
+        $offers = DB::table('offers')
+                    ->select('offers.*')
+                    ->join('users', 'users.id', '=', 'offers.seller_id')
+                    ->where('users.id', '=', $id)
+                    #->orderBy('offers.id')
+                    ->paginate(3, ['*'], 'offers');
+
+        $user_addresses = DB::table('user_addresses')
+                            ->select('user_addresses.*')
+                            ->join('users', 'users.id', '=', 'user_addresses.user_id')
+                            ->where('users.id', '=', $id)
+                            #->orderBy('user_addresses.id')
+                            ->paginate(3, ['*'], 'addresses');
+                        
+        $cart = DB::table('carts')
+                    ->select('carts.*')
+                    ->join('users', 'users.id', '=', 'carts.id')
+                    ->join('orders', 'carts.id', '=', 'orders.cart_id')
+                    ->where('carts.user_id', '=', $id)
+                    ->get();
+        
+        #dd(\DB::getQueryLog());
+        
+        return view('users.show')
+                ->with('users', $users)
+                ->with('offers', $offers)
+                ->with('user_addresses', $user_addresses)
+                ->with('cart', $cart);
     }
 
     /**
@@ -80,10 +112,11 @@ class UsersController extends Controller
     public function update(ValidationUsersRequests $request, $id)
     {
         $request->validated();
-        
+
         $users = Users::find($id);
         $input = $request->all();
         $users->update($input);
+        
         return redirect('users')->with('flash_message', 'User updated');
     }
 

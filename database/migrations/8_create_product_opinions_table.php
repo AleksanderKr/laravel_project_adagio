@@ -21,7 +21,7 @@ return new class extends Migration
         });
 
         Schema::table('product_opinions', function (Blueprint $table) {
-            $table->foreign('offer_id')->references('id')->on('offers');
+            $table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
         });
     }
 

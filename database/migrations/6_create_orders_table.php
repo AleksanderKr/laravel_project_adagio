@@ -20,7 +20,7 @@ return new class extends Migration
         });
         
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreign('cart_id')->references('id')->on('carts');
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
         });
     }
 

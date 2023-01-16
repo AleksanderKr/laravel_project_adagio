@@ -25,12 +25,12 @@ return new class extends Migration
             $table->string('shipper');
             $table->decimal('price', 10, 2);
             $table->binary('pictures');
-            $table->string('condition');
+            $table->string('condition', 30);
         });
         
         Schema::table('offers', function (Blueprint $table) {
-            $table->foreign('seller_id')->references('id')->on('users');
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 

@@ -6,7 +6,7 @@
     <div class="card-body">
         
         <form action="{{ url('users') }}" method="post">
-            {!! csrf_field() !!}
+            @csrf
             <label>Username</label><br />
             <input type="text" name="username" id="username" value="{{ old('username') }}" class="form-control"><br />
             <p style="color: red;">@error('username'){{ $message }}@enderror</p>

@@ -6,7 +6,7 @@
     <div class="card-body">
 
         <form action="{{ url('users/' . $users->id) }}" method="post">
-            {!! csrf_field() !!}
+            @csrf
             @method("PATCH")
             <input type="hidden" name="id" id="id" value="{{ $users->id }}" />
             <label>Username</label><br />

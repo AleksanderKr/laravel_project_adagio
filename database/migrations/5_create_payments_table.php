@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2);
         });
         Schema::table('payments', function (Blueprint $table) {
-            $table->foreign('cart_id')->references('id')->on('carts');
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
         });
     
     }

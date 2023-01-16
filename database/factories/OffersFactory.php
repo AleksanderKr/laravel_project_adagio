@@ -20,8 +20,10 @@ class OffersFactory extends Factory
     public function definition()
     {
         return [
-            'seller_id' => fake()->randomNumber(2, true),
-            'order_id' => fake()->randomNumber(2, true),
+            #'seller_id' => fake()->randomNumber(2, true),
+            'seller_id' => 1,
+            #'order_id' => fake()->randomNumber(2, true),
+            'order_id' => 1,
             'item_name' => fake()->sentence(2),
             'category' => 'elektronika',
             'brand' => 'samsung',
@@ -29,7 +31,7 @@ class OffersFactory extends Factory
             'put_up_on' => fake()->date('Y-m-d'),
             'shipper' => 'DPD',
             'price' => fake()->randomFloat(2, 40, 500),
-            'pictures' => 'img placeholder',
+            'pictures' => fake()->imageUrl(640, 480, 'offer'),
             'condition' => 'brand new',
         ];
     }

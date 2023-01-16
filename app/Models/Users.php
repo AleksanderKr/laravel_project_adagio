@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Offers;
+use App\Models\User_addresses;
+use App\Models\Carts;
 
 class Users extends Model
 {
@@ -18,7 +21,7 @@ class Users extends Model
     }
 
     public function offers() {
-        return $this->hasMany(Offers::class);
+        return $this->hasMany(Offers::class, 'id', 'seller_id');
     }
 
     public function carts() {

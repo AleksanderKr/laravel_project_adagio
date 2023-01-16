@@ -39,8 +39,8 @@
                                             <a href="{{ url('/users/' . $user->id) . '/edit/' }}" title="Edit User"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                             
                                             <form method="POST" action="{{ url('/users/' . $user->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
+                                                @method('DELETE')
+                                                @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete User" onclick="return confirm("Confirm delete?")"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
                                         </td>
@@ -53,5 +53,6 @@
                 </div>
             </div>
         </div>
+        <div class="row" style="float: right;">{{ $users->links() }}</div>
     </div>
 @endsection
