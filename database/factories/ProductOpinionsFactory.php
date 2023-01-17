@@ -17,7 +17,7 @@ class ProductOpinionsFactory extends Factory
     public function definition()
     {
         return [
-            'offer_id' => fake()->randomNumber(2, true),
+            'offer_id' => fake()->randomNumber(1, true),
             'text_field' => fake()->sentence(10),
             'author' => fake()->word(), # problem
         ];

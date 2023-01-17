@@ -10,6 +10,7 @@ class Payments extends Model
     use HasFactory;
     
     public $timestamps = false;
+    protected $guarded = ['id'];
 
     public function carts() {
         return $this->belongsTo(Carts::class);

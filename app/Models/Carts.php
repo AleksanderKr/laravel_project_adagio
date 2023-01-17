@@ -10,7 +10,8 @@ class Carts extends Model
     use HasFactory;
 
     public $timestamps = false;
-    
+    protected $guarded = ['id', 'user_id'];
+
     public function shipments() {
         return $this->hasMany(Shipments::class);
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('offer_id')->unsigned();
             $table->string('text_field', 8000);
-            $table->string('author');
+            $table->string('author', 80);
         });
 
         Schema::table('product_opinions', function (Blueprint $table) {

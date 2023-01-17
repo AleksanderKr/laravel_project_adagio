@@ -17,7 +17,7 @@ class UserAddressesFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => fake()->randomNumber(2, true),
+            'user_id' => fake()->randomNumber(1, true),
             'street_and_house_nr' => fake()->streetAddress(),
             'locality' => fake()-> city(),
             'zip_code' => fake()->postcode(),

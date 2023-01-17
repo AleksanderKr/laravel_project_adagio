@@ -20,10 +20,8 @@ class OffersFactory extends Factory
     public function definition()
     {
         return [
-            #'seller_id' => fake()->randomNumber(2, true),
-            'seller_id' => 1,
-            #'order_id' => fake()->randomNumber(2, true),
-            'order_id' => 1,
+            'seller_id' => fake()->randomNumber(1, true),
+            'order_id' => fake()->randomNumber(1, true),
             'item_name' => fake()->sentence(2),
             'category' => 'elektronika',
             'brand' => 'samsung',

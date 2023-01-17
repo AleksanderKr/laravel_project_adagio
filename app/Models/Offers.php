@@ -13,6 +13,7 @@ class Offers extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $guarded = ['id'];
 
     public function users() {
         return $this->belongsTo(Users::class, 'id', 'seller_id');

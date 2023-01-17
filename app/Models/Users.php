@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Offers;
 use App\Models\User_addresses;
 use App\Models\Carts;
@@ -13,8 +14,8 @@ class Users extends Model
     use HasFactory;
 
     public $timestamps = false;
-
     protected $guarded = ['id'];
+    protected $hidden = ['password'];
 
     public function user_addresses() {
         return $this->hasMany(User_addresses::class);

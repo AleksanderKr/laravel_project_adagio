@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('telephone', 20);
             $table->string('NIP', 20);
             $table->string('password', 128); #sha-256/512
+            $table->string('salt', 254);
             $table->string('email', 80);
             $table->date('join_date');
         });

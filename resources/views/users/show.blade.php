@@ -14,6 +14,7 @@
         <p class="card-text">Telephone: {{ $users->telephone }}</p>
         <p class="card-text">NIP: {{ $users->NIP }}</p>
         <p class="card-text">Password: {{ $users->password }}</p>
+        <p class="card-text">Salt: {{ $users->salt }}</p>
         <p class="card-text">Email: {{ $users->email }}</p>
     </div>
 </div>
@@ -25,16 +26,14 @@
     <h4 style="margin-left: 15px"> Cart of: {{ $users->username }} </h4>
     
         <div class="row">
-            @foreach ($user_addresses as $address)
+            @foreach ($cart as $user_cart)
             <div class="col">
                 <div class="card" style="margin: 20px;">
-                    <div class="card-header">Address id: {{ $address->id }}</div>
+                    <div class="card-header">Order id: {{ $user_cart->ord_id }}</div>
                     <div class="card-body">
-                        <p>Zip code: {{ $address->zip_code }}</p>
-                        <p>Locality: {{ $address->locality }}</p>
-                        <p>Street and house nr:  {{ $address->street_and_house_nr }}</p>
-                        <p>Country: {{ $address->country }}</p>
-
+                        <p>Quantity {{ $user_cart->quantity }}</p>
+                        <p>Item name {{ $user_cart->item_name }}</p>
+                        <p>Offer id {{ $user_cart->offer_id }}</p>
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
@@ -45,7 +44,7 @@
             </div>
             @endforeach
     </div>
-    <div class="row" style="float: right;">{{ $user_addresses->appends(['offers' => $offers->currentPage()])->links() }}</div>
+    <div class="row" style="float: right;" >{{ $cart->links() }}</div>
 </div>
 
 <!--                        offers                  -->
@@ -96,7 +95,6 @@
                         <p>Country: {{ $address->country }}</p>
 
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                         </div>
                         

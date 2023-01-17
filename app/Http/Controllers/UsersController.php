@@ -43,8 +43,12 @@ class UsersController extends Controller
     public function store(ValidationUsersRequests $request)
     {
         $request->validated();
+        $request->request->add(['salt' => fake()->password()]);
+        $hash = hash('sha256', $request->password . $request->salt);
+        $request->merge(['password' => $hash]);
+
+        $input = $request->all();# input hasla dodaje salt i hash wtedy
         
-        $input = $request->all();
         Users::create($input);
         return redirect('users')->with('flash_message', 'User Added');
     }
@@ -74,12 +78,12 @@ class UsersController extends Controller
                             #->orderBy('user_addresses.id')
                             ->paginate(3, ['*'], 'addresses');
                         
-        $cart = DB::table('carts')
-                    ->select('carts.*')
-                    ->join('users', 'users.id', '=', 'carts.id')
-                    ->join('orders', 'carts.id', '=', 'orders.cart_id')
+        $cart = DB::table('orders')
+                    ->select('orders.id as ord_id', 'orders.quantity', 'orders.cart_id', 'offers.id as offer_id', 'offers.item_name')
+                    ->join('offers', 'offers.order_id', '=', 'orders.id')
+                    ->join('carts', 'carts.id', '=', 'orders.cart_id')
                     ->where('carts.user_id', '=', $id)
-                    ->get();
+                    ->paginate(3, ['*'], 'orders');
         
         #dd(\DB::getQueryLog());
         

@@ -10,7 +10,8 @@ class Orders extends Model
     use HasFactory;
 
     public $timestamps = false;
-    
+    protected $guarded = ['id'];
+
     public function offers() {
         return $this->hasMany(Offers::class);
     }

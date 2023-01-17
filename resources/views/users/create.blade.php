@@ -24,7 +24,7 @@
             <p style="color: red;">@error('telephone'){{ $message }}@enderror</p>
 
             <label>NIP</label><br />
-            <input type="text" name="NIP" id="NIP" value="{{ old('NIP') }}" class="form-control"><br />
+            <input type="text" name="NIP" id="NIP" value="{{ old('NIP') }}" class="form-control" placeholder="10 numbers without spaces"><br />
             <p style="color: red;">@error('NIP'){{ $message }}@enderror</p>
 
             <label>Password</label><br />

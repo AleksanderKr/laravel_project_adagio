@@ -17,7 +17,7 @@ class CartsFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => fake()->randomNumber(2, true),
+            'user_id' => fake()->randomNumber(1, true),
         ];
     }
 }

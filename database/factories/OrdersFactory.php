@@ -17,7 +17,7 @@ class OrdersFactory extends Factory
     public function definition()
     {
         return [
-            'cart_id' => fake()->randomNumber(2, true),
+            'cart_id' => fake()->randomNumber(1, true),
             'quantity' => fake()->randomNumber(1, true),
         ];
     }

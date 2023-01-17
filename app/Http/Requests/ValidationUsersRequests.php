@@ -29,7 +29,7 @@ class ValidationUsersRequests extends FormRequest
             'last_name' => ['required', 'alpha', 'max:40', 'min:2'],
             'telephone' => ['required', 'regex:/^(?:(?:(?:(?:\+|00)\d{2})?[ -]?(?:(?:\(0?\d{2}\))|(?:0?\d{2})))?[ -]?(?:\d{3}[- ]?\d{2}[- ]?\d{2}|\d{2}[- ]?\d{2}[- ]?\d{3}|\d{7})|(?:(?:(?:\+|00)\d{2})?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}))$/'],
             'NIP' => ['required', 'numeric', 'digits:10'],  # telephone validation problem: possible "+48" or lack thereof
-            'password' => ['required', 'max:40', 'min:8'],
+            'password' => ['required', 'max:300', 'min:8'],
             'email' => ['required', 'email:rfc'],
             'join_date' => ['required', 'date_format:Y-m-d']
         ];

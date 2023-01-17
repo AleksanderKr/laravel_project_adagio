@@ -10,8 +10,8 @@ class UserAddresses extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $guarded = ['id'];
 
-    #protected $fillable = ['address_id'];
     public function users() {
         return $this->belongsTo(Users::class);
     }

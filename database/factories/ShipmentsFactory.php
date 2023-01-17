@@ -18,7 +18,7 @@ class ShipmentsFactory extends Factory
     {
 
         return [
-            'cart_id' => fake()->randomNumber(2, true),
+            'cart_id' => fake()->randomNumber(1, true),
             'company' => 'DPD',
             'sent' => fake()->dateTimeBetween('last year', '-1 month'),
             'arrived' => fake()->dateTimeBetween(fake()->dateTimeBetween('last year', '-1 month'), strtotime('+5 days')),

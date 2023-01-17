@@ -17,7 +17,7 @@ class PaymentsFactory extends Factory
     public function definition()
     {
         return [
-            'cart_id' => fake()->randomNumber(2, true),
+            'cart_id' => fake()->randomNumber(1, true),
             'method' => fake()->creditCardType(),
             'date' => fake()->dateTimeBetween(fake()->dateTimeBetween('last year', '-1 month'), strtotime('-1 week')),
             'status' => 'zapłacono',

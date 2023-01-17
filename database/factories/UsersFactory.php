@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Users>
@@ -21,8 +22,9 @@ class UsersFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'telephone' => fake()->numerify('+48 %%% %%% %%%'),
-            'NIP' => fake()->numerify('%%% %% %% %%%'),
-            'password' => fake()->word(),   # proper salted hashing
+            'NIP' => fake()->numerify('%%%%%%%%%%'),
+            'password' => hash('sha256', fake()->password()),
+            'salt' => fakte()->password(),
             'email' => fake()->email(),
             'join_date' => fake()->date('Y-m-d'),
         ];

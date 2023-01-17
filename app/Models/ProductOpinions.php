@@ -10,7 +10,8 @@ class ProductOpinions extends Model
     use HasFactory;
 
     public $timestamps = false;
-    
+    protected $guarded = ['id'];
+
     public function offers() {
         return $this->belongsTo(Offers::class);
     }
