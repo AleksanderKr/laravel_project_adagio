@@ -81,7 +81,7 @@
 
 <div class="container">
     <br />
-    <h4 style="margin-left: 15px"> Addresses of: {{ $users->username }} </h4>
+    <h4 style="margin-left: 15px"> Addresses of: {{ $users->username }}</h4>
     
         <div class="row">
             @foreach ($user_addresses as $address)

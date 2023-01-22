@@ -11,6 +11,7 @@
                         <a href="{{ url('/users/create') }}" class="btn btn-success btn-sm" title="Add New User">
                             Add New
                         </a>
+                        <a class="btn btn-primary" href="/" style="float: right;">Return to dashboard</a>
                         <br />
                         <br />
                         <div class="table-responsive">

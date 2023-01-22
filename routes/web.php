@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\OffersController;
 
 
 /*
@@ -16,7 +17,7 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/database_test', function() {
@@ -28,6 +29,8 @@ Route::get('/CRUD', function() {
 });
 
 Route::resource("/users", UsersController::class);
+
+Route::resource("/", OffersController::class);
 
 
 # bootstrap auth
