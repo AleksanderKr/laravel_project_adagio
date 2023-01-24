@@ -31,7 +31,8 @@ Route::get('/CRUD', function() {
 Route::resource("/users", UsersController::class);
 
 Route::resource("/", OffersController::class);
-
+Route::get("/search", [OffersController::class, 'search']);
+Route::get("/searchMultiple", [OffersController::class, 'searchMultiple']);
 
 # bootstrap auth
 Auth::routes();

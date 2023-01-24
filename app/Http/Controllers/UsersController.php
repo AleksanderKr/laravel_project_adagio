@@ -29,7 +29,6 @@ class UsersController extends Controller
     {
         $users = Users::paginate(9, ['*'], 'users_pagination');
     
-        #$users = Users::search(request('search'))->paginate(9);
         \DB::enableQueryLog();
         
         $country_stat = DB::table('carts')
@@ -38,6 +37,7 @@ class UsersController extends Controller
                             ->join('user_addresses', 'user_addresses.user_id', '=', 'carts.user_id')
                             ->groupBy('user_addresses.country')
                             ->get();
+        
     # bazy, join, podzapytanie łatwe
         $joiner = DB::table('offers')
                     ->select('offers.item_name')
@@ -179,7 +179,7 @@ class UsersController extends Controller
                     ->join('carts', 'carts.id', '=', 'orders.cart_id')
                     ->where('carts.user_id', '=', $id)
                     ->orderBy('orders.id')
-                    ->get();
+                    ->paginate(3, ['*'], 'orders');
 
         #dd(\DB::getQueryLog());
 
