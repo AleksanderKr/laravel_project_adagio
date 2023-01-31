@@ -6,8 +6,8 @@
                 <div class="card" style="margin: 20px;">
                     <div class="card-header">Offer id: {{ $offer->id }}</div>
                     <div class="card-body">
-                      <p>Item name: {{ $offer->item_name }}</p>
-                      <p>Category: {{ $offer->category }}</p>
+                      <p>Nazwa: {{ $offer->item_name }}</p>
+                      <p>Kategoria: {{ $offer->category }}</p>
                       <img src="{{ $offer->pictures }}" width ="40%" height="40%" alt="no image found" />
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary">View</button>

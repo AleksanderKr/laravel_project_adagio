@@ -16,17 +16,21 @@ class OffersController extends Controller
     public function index()
     {
         $offers = Offers::paginate(15);
-        
-        return view('dashboard')->with('offers', $offers);
+        $usernames = DB::table('users')
+                    ->select('username')
+                    ->get();
+
+        return view('dashboard')->with('offers', $offers)->with('usernames', $usernames);
     }
 
     public function search(Request $request) {
         if ($request->category_dropdown == 'Wszystkie') {
             $request->category_dropdown = '%';
         }
+
         $offers_searched = DB::table('offers')
                             ->select('offers.*')
-                            ->where('category', 'LIKE', $request->category_dropdown)
+                            ->where('category', 'LIKE', $request->category_dropdown) # mozna dodac podzapytanie zeby nie uzywac like
                             ->where('item_name', 'LIKE', '%'.$request->search.'%')
                             ->paginate(15);
         
@@ -57,7 +61,7 @@ class OffersController extends Controller
         ->orWhere('item_name', 'LIKE', '%'.$request->second_field.'%')
         ->orderBy('seller_id')
         ->paginate(15);
-
+        
 
         return view('dashboard')->with('offers', $offers_multiple)->with('multiple_names', $names);
     }
@@ -91,7 +95,9 @@ class OffersController extends Controller
      */
     public function show($id)
     {
-        //
+        $offers = Offers::find($id);
+        
+        return view('offers.show')->with('offers', $offers);
     }
 
     /**
@@ -115,6 +121,11 @@ class OffersController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function makeOrder($id) 
+    {
+        return view('offers.makeOrder')->with('offer_id', $id);
     }
 
     /**

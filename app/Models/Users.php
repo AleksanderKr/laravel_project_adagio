@@ -11,14 +11,15 @@ use App\Models\User_addresses;
 use App\Models\Carts;
 
 
-class Users extends Model
+class Users extends Authenticatable
 {
     use HasFactory;
     use Searchable;
 
     public $timestamps = false;
     protected $guarded = ['id'];
-    protected $hidden = ['password'];
+    protected $guard = 'admin';
+    protected $hidden = ['password', 'remember_token'];
 
     public function user_addresses() {
         return $this->hasMany(User_addresses::class);

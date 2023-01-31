@@ -38,7 +38,7 @@ class UsersController extends Controller
                             ->groupBy('user_addresses.country')
                             ->get();
         
-    # bazy, join, podzapytanie łatwe
+        # bazy, join, podzapytanie łatwe
         $joiner = DB::table('offers')
                     ->select('offers.item_name')
                     ->join('users', 'offers.seller_id', '=', 'users.id')
@@ -79,7 +79,7 @@ class UsersController extends Controller
                             ->orderBy('payments.method')
                             ->get();
     
-    
+        
         #dd(\DB::getQueryLog());
         # bazy, window function, ranking kto ile wydał
         $ranking = DB::table('carts')
@@ -90,7 +90,7 @@ class UsersController extends Controller
                     ->groupBy('carts.user_id')
                     ->orderBy('RANKING')
                     ->get();
-                              
+            
         # bazy, join, podzapytanie
         $ranking_sub = DB::table('carts')
                         ->select('user_id',                             
@@ -98,9 +98,9 @@ class UsersController extends Controller
                         DB::raw('DENSE_RANK() OVER (ORDER BY (SELECT SUM(amount) FROM payments WHERE cart_id = carts.id) DESC) as RANKING'))                        
                         ->groupBy('user_id')
                         ->orderBy('RANKING')
-                        ->limit(9)
+                        #->limit(9)
                         ->get();
-
+        
         #dd($ranking_sub);
                         
         # RANK() vs. DENSE_RANK() - przeskakuje, bo to liczba poprzednich wierszy + 1
@@ -116,7 +116,7 @@ class UsersController extends Controller
                             ->groupBy('carts.user_id')
                             ->get();
 
-        
+
         return view ('users.index')->with('users', $users)->with('country_stat', $country_stat);
     }
 
@@ -138,14 +138,17 @@ class UsersController extends Controller
      */
     public function store(ValidationUsersRequests $request)
     {
+        
         $request->validated();
         $request->request->add(['salt' => fake()->password()]);
+        $request->request->add(['join_date' => date('Y-m-d')]);
         $hash = hash('sha256', $request->password . $request->salt);
         $request->merge(['password' => $hash]);
 
-        $input = $request->all();# input hasla dodaje salt i hash wtedy
+        $input = $request->all();# input hasla dodaje salt i hashuje
         
         Users::create($input);
+        
         return redirect('users')->with('flash_message', 'User Added');
     }
 
@@ -212,7 +215,7 @@ class UsersController extends Controller
      */
     public function update(ValidationUsersRequests $request, $id)
     {
-        \DB::enableQueryLog();
+        #\DB::enableQueryLog();
         $request->validated();
         
         $users = Users::find($id);

@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         
         /*
             "procedura": comment `carts` table creation after the first one,
-            swap order id in `offers` table with some of those vars or NULL
+            swap order id in `offers` table with some of those two variables or NULL
 
         */
 
@@ -65,6 +65,8 @@ class DatabaseSeeder extends Seeder
             'salt' => fake()->password(),
             'email' => fake()->email(),
             'join_date' => fake()->date('Y-m-d'),
+            'remember_token' => null,
+            'role' => 0,
         ]);
         
         /*

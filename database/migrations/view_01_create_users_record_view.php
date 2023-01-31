@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         \DB::statement('
-            CREATE VIEW users_records
+            CREATE VIEW IF NOT EXISTS users_records
             AS
             SELECT 
                 users.id AS users_id,

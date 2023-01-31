@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\OffersController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,21 +20,23 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/database_test', function() {
-    return view('database_test');
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::resource("/users", UsersController::class);
 });
 
-Route::get('/CRUD', function() {
-    return view('CRUD');
-});
 
-Route::resource("/users", UsersController::class);
 
 Route::resource("/", OffersController::class);
 Route::get("/search", [OffersController::class, 'search']);
 Route::get("/searchMultiple", [OffersController::class, 'searchMultiple']);
 
-# bootstrap auth
+Route::resource("/offers", OffersController::class);
+Route::post("offers/{id}/makeOrder", [OffersController::class, 'makeOrder']);
+
+# laravel/ui bootstrap auth
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
