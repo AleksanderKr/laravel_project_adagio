@@ -5,7 +5,12 @@
 <div class="card" style="margin: 20px; width: 83%; margin: auto;">
     <div class="card-header">
         Dane użytkownika
-        <button type="button" class="btn btn-primary" onclick="window.location='{{ url("users/") }}'" style="margin-left: 20px;"> Back to index </button>
+        @if (Auth::check())
+        @if (Auth::user()->role == 1)
+        <button type="button" class="btn btn-primary" onclick="window.location='{{ url("users/") }}'" style="margin-left: 20px;"> Wróć do listy </button>
+        @endif
+        @endif
+        <a href="{{ url('users/'.Auth::id().'/edit/') }}" class="btn btn-warning"> Edytuj dane</a>
     </div>
     <div class="card-body">
         <h5 class="card-title">Nazwa użytkownika: {{ $users->username }}</h5><br />
@@ -33,8 +38,12 @@
                         <p>Imię {{ $user_cart->item_name }}</p>
                         <p>Id oferty {{ $user_cart->offer_id }}</p>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            @if (Auth::check())
+                            @if (Auth::user()->role == 1)
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Wyświetl</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Edytuj</button>
+                            @endif
+                            @endif
                         </div>
                         
                     </div>
@@ -50,21 +59,26 @@
 <div class="container">
     <br />
     <h4 style="margin-left: 15px"> Oferty sprzedaży użytkownika: {{ $users->username }} </h4>
+    <a href="{{ url('/addOffer') }}" class="btn btn-danger" style="margin-left: 50px;"> Dodaj ofertę </a>
     
         <div class="row">
             @foreach ($offers as $offer)
             <div class="col">
                 <div class="card" style="margin: 20px;">
-                    <div class="card-header">Id oferty: {{ $offer->id }}</div>
+                    <div class="card-header">Oferta: {{ $offer->item_name }}</div>
                     <div class="card-body">
-                        <p>Imię: {{ $offer->item_name }}</p>
+                        <p>Nazwa: {{ $offer->item_name }}</p>
                         <p>Kategoria: {{ $offer->category }}</p>
-                        <img src="{{ $offer->pictures }}" width ="40%" height="40%" alt="no image found" />
+                        <p>Cena: {{ $offer->price }}</p>
                         <br />
                         <br />
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            @if (Auth::check())
+                            @if (Auth::user()->role == 1)
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Wyświetl</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Edytuj</button>
+                            @endif
+                            @endif
                         </div>
                         
                     </div>
@@ -85,16 +99,13 @@
             @foreach ($user_addresses as $address)
             <div class="col">
                 <div class="card" style="margin: 20px;">
-                    <div class="card-header">Id adresu: {{ $address->id }}</div>
+                    <div class="card-header">Adres: {{ $address->locality }}</div>
                     <div class="card-body">
                         <p>Kod pocztowy: {{ $address->zip_code }}</p>
                         <p>Miejscowość: {{ $address->locality }}</p>
                         <p>Ulica i nr domu:  {{ $address->street_and_house_nr }}</p>
                         <p>Państwo: {{ $address->country }}</p>
 
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
                         
                     </div>
                 </div>

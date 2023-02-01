@@ -143,7 +143,6 @@ class UsersController extends Controller
         $request->request->add(['salt' => fake()->password()]);
         $request->request->add(['join_date' => date('Y-m-d')]);
         $hash = hash('sha256', $request->password . $request->salt);
-        $request->merge(['password' => $hash]);
 
         $input = $request->all();# input hasla dodaje salt i hashuje
         

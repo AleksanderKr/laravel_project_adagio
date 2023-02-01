@@ -16,9 +16,10 @@ class AdminMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
+    {   
         if (Auth::check()) {
-            if (Auth::user()->role == 1) {
+            # dostęp dla administratorów oraz do własnych profili
+            if (Auth::user()->role == 1 || '/users/'.Auth::id() == $request->getPathInfo() || '/users/'.Auth::id().'/edit' == $request->getPathInfo()) {
                 return $next($request);
             }
             else {

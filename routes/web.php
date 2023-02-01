@@ -26,17 +26,19 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 
 
+Route::get("/addOffer", [OffersController::class, 'create']);
+
 Route::resource("/", OffersController::class);
 Route::get("/search", [OffersController::class, 'search']);
 Route::get("/searchMultiple", [OffersController::class, 'searchMultiple']);
 
 Route::resource("/offers", OffersController::class);
 Route::post("offers/{id}/makeOrder", [OffersController::class, 'makeOrder']);
+Route::post("offers/{id}/finishOrder", [OffersController::class, 'finishOrder']);
 
 # laravel/ui bootstrap auth
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
 

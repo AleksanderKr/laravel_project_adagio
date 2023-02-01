@@ -38,9 +38,10 @@
             <input type="text" name="email" id="email" value="{{ old('email') }}" class="form-control"><br />
             <p style="color: red;">@error('email'){{ $message }}@enderror</p>
 
-            <label>Join Date</label><br />
-            <input type="date" name="join_date" id="join_date" value="{{ old('join_date') }}" class="form-control"><br />
+            
+            <input type="hidden" name="join_date" id="join_date" value="{{ date('Y-m-d') }}" class="form-control"><br />
             <p style="color: red;">@error('join_date'){{ $message }}@enderror</p>
+
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

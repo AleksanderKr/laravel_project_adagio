@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('email', 80);
             $table->date('join_date');
             $table->rememberToken();
-            $table->boolean('role'); # 0 - user, 1 - admin
+            $table->string('role', '1'); # 0 - user, 1 - admin
         });
     }
 

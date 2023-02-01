@@ -3,14 +3,17 @@
 
 <div class="card" style="margin: 20px;">
     <div class="card-header">
-        Offer data
-        <button type="button" class="btn btn-primary" onclick="window.location='{{ url("/") }}'" style="margin-left: 20px;"> Back to index </button>
+        Zamówienie
+        <button type="button" class="btn btn-primary" onclick="window.location='{{ url("/") }}'" style="margin-left: 20px;"> Wróć do strony głównej </button>
     </div>
     <div class="card-body">
-        <form action="" method="post">
-            Payment<input type="text" />
+        
+        <form action="/offers/{{ $order_id }}/finishOrder" method="post">
+            <!-- hidden z danymi -->
             
-            <button type="submit">Confirm Order</button>
+            <input type="hidden" value="{{ $order_id }}">
+            
+            <button type="submit" class="btn btn-warning">Zamów</button>
         </form>
         
     </div>

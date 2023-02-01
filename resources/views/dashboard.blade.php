@@ -12,10 +12,11 @@
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Adagio</a>
-      
-      @auth
+      @if (Auth::check())
+      @if (Auth::user()->role == 1)
         <a class="navbar-brand" href="/users">Panel zarządzania</a>
-      @endauth
+      @endif
+      @endif
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -23,7 +24,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           @auth
           <li class="nav-item">
-            <a class="nav-link" href="#" tabindex="-1" >Profil użytkownika</a>
+            <a class="nav-link" href="{{ url('/users/'.Auth::id()) }}" tabindex="-1" >Profil użytkownika</a>
           </li>
           @endauth
         </ul>
@@ -31,7 +32,7 @@
         <form class="d-flex" style="margin-right: 150px;" method="get" action="{{ url('/search') }}">
           @csrf
           
-          <input class="form-control me-2" style="width: 600px;" type="text" id="search" name="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" style="width: 600px;" type="text" id="search" name="search" placeholder="Czego szukasz?" aria-label="Search">
           <select name="category_dropdown">
             
               <option>Wszystkie</option>  
@@ -109,9 +110,11 @@
                       <img src="{{ $offer->pictures }}" width ="200" height="120" alt="no image found">
                         <div class="btn-group">
                           <a href="{{ url('/offers/' . $offer->id) }}" title="View Offer" class="btn btn-info btn-sm">Wyświetl</a>
-                          @auth
-                          <a href="{{ url('/offers/' . $offer->id) . '/edit/' }}" title="Edit Offer" class="btn btn-primary btn-sm">Edytuj</a>
-                          @endauth
+                          @if (Auth::check())
+                          @if (Auth::user()->role == 1)
+                            <a href="{{ url('/offers/' . $offer->id) . '/edit/' }}" title="Edit Offer" class="btn btn-primary btn-sm">Edytuj</a>
+                          @endif
+                          @endif
                         </div>
                         
                     </div>

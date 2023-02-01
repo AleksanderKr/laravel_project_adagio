@@ -15,13 +15,13 @@
         <p class="card-text">Put up on: {{ $offers->put_up_on }}</p>
         <p class="card-text">Shipper: {{ $offers->shipper }}</p>
         <h5 class="card-title">Price: {{ $offers->price }} PLN </h5><br />
-        <!-- request ustawienia order_id w tablicy `offers` na `user_id` -->
+        <!-- request ustawienia order_id w tablicy `offers` na `user_id`    dodaj do koszyka -->
         <form action="/offers/{{ $offers->id }}/makeOrder" method="post">
             @csrf
-            <button type="submit" class="btn btn-warning">Make Order</button>
+            <button type="submit" class="btn btn-warning">Dodaj do koszyka</button>
         </form>
             
     </div>
 </div>
-product opinions
+opinie
 @endsection

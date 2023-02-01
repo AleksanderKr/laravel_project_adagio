@@ -37,9 +37,7 @@
             <input type="text" name="email" id="email" value="{{ $users->email }}" class="form-control"><br />
             <p style="color: red;">@error('email'){{ $message }}@enderror</p>
 
-            <label>Data dołączenia</label><br />
-            <input type="text" name="join_date" id="join_date" value="{{ $users->join_date }}" class="form-control"><br />
-            <p style="color: red;">@error('join_date'){{ $message }}@enderror</p>
+
 
             <input type="submit" value="Update" class="btn btn-success"><br />
         </form>
