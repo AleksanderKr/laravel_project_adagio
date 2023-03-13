@@ -23,7 +23,7 @@ Introduction to Laravel through creating an e-commerce site based on Allegro.
 5. MySQL database created and seeded using files devoted to DB migration.
 
 ### ERD
-[!ERD](/ERD.png "ERD")
+[!ERD]([/ERD.png](https://raw.githubusercontent.com/AleksanderKr/laravel_project_adagio/main/ERD.png) "ERD")
 
 #### Notes
 1. Some controllers contain additional SQL queries (not necessary for the site to work, but these could be potentially used later) due to requirements of the teachers at the university.
