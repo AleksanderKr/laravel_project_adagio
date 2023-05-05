@@ -22,6 +22,9 @@ Introduction to Laravel through creating an e-commerce site based on Allegro.
 4. MVC pattern.
 5. MySQL database created and seeded using files devoted to DB migration.
 
+### Dashboard preview
+![dashboard](https://github.com/AleksanderKr/laravel_project_adagio/blob/main/dashboard.JPG)
+
 ### ERD
 ![ERD](https://i.imgur.com/ETJHODp.png "ERD")
 
