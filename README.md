@@ -3,7 +3,7 @@
 ### Project description
 ---
 #### Purpose:
-A task from university: create a site depending on a relational database.
+A task for studies: create a site depending on a relational database.
 Introduction to Laravel through creating an e-commerce site based on Allegro.
 #### Tools used:
 - Laravel 9
