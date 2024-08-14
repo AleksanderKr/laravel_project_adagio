@@ -31,4 +31,4 @@ Introduction to Laravel through creating an e-commerce site based on Allegro.
 #### Notes
 1. Some controllers contain additional SQL queries (not necessary for the site to work, but these could be potentially used later) due to requirements of the teachers at the university.
 2. Polish language was a requirement as well.
-3. Quality of UI was disregarded since it wasn't taken into account when graded.
+3. Quality of UI has been disregarded since it wasn't taken into account when graded.
